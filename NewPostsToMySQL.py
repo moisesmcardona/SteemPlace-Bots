@@ -57,6 +57,8 @@ while True:
                             save = sendToMySQL(op["author"], link, op["permlink"], "rutablockchain")
                         if 'slothicorn' in tags:
                             save = sendToMySQL(op["author"], link, op["permlink"], "slothicorn")
+                        if 'minotaurototal' in tags:
+                            save = sendToMySQL(op["author"], link, op["permlink"], "minotaurototal")
                         if 'castellano' in tags and 'venezuela' in tags and 'concursovenezuela' in tags:
                             save = sendToMySQL(op["author"], link, op["permlink"], "concursovenezuela")
                         if save == True:

@@ -86,38 +86,28 @@ while True:
                                             msg['To'] = mailtouse
                                             messagetosend = ""
                                             messagetitle = ""
-                                            print("1")
                                             fulllink = "https://steemit.com/tag/@" + postauthor + "/" + postlink
-                                            print("1 1/2")
                                             print(languagetosend)
                                             if "es" in languagetosend:
                                                 print("setting message spanish")
-                                                messagetitle = "@" + mentionstring + ", has sido mencionado en un post"
+                                                messagetitle = "@" + mentionstring + ", has sido mencionado en un post de @" + postauthor
                                                 messagetosend = "Hola, <a href=https://steemit.com/@" + mentionstring + ">@" + mentionstring + "</a><br><br>Has sido mencionado en el siguiente post de <a href=https://steemit.com/@" + postauthor + ">@" + postauthor + "</a>:<br><br><a href=" + fulllink + ">" + fulllink + "</a><br><br>Atentamente,<br>Steem.Place"
                                             else:
                                                 print("setting message english")
-                                                messagetitle = "@" + mentionstring + ", you have been mentioned in a post"
+                                                messagetitle = "@" + mentionstring + ", you have been mentioned in a post by @" + postauthor
                                                 messagetosend = "Hi, <a href=https://steemit.com/@" + mentionstring + ">@" + mentionstring + "</a><br><br>You have been mentioned in the following post by <a href=https://steemit.com/@" + postauthor + ">@" + postauthor + "</a>:<br><br><a href=" + fulllink + ">" + fulllink + "</a><br><br>Sincerelly,<br>Steem.Place"
-                                            print("1 1/3")
                                             msg['Subject'] = messagetitle
-                                            print("1 1/4")
                                             message = messagetosend
-                                            print("2")
                                             msg.attach(MIMEText(message, 'html'))
                                             mailserver = smtplib.SMTP('smtp-relay.gmail.com', 587)
-                                            print("3")
                                             # identify ourselves to smtp gmail client
                                             mailserver.ehlo()
-                                            print("4")
                                             # secure our email with tls encryption
                                             mailserver.starttls()
-                                            print("5")
                                             # re-identify ourselves as an encrypted connection
                                             mailserver.ehlo()
-                                            print("6")
                                             # mailserver.login('me@gmail.com', 'mypassword')
                                             mailserver.sendmail('noreply@steem.place', mailtouse, msg.as_string())
-                                            print("7")
                                             mailserver.quit()
                                             print("Email sent")
                                         else:
