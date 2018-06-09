@@ -51,16 +51,18 @@ while True:
                         save = False
                         if 'spanish' in tags or 'espanol' in tags or 'castellano' in tags:
                             save = sendToMySQL(op["author"], link, op["permlink"], "castellano")
-                        if 'theunion' in tags:
-                            save = sendToMySQL(op["author"], link, op["permlink"], "theunion")
+                        if 'castellano' in tags and 'venezuela' in tags and 'concursovenezuela' in tags:
+                            save = sendToMySQL(op["author"], link, op["permlink"], "concursovenezuela")
+                        if 'minotaurototal' in tags:
+                            save = sendToMySQL(op["author"], link, op["permlink"], "minotaurototal")
+                        if 'pitchperfect' in tags:
+                            save = sendToMySQL(op["author"], link, op["permlink"], "pitchperfect")
                         if 'rutablockchain' in tags:
                             save = sendToMySQL(op["author"], link, op["permlink"], "rutablockchain")
                         if 'slothicorn' in tags:
                             save = sendToMySQL(op["author"], link, op["permlink"], "slothicorn")
-                        if 'minotaurototal' in tags:
-                            save = sendToMySQL(op["author"], link, op["permlink"], "minotaurototal")
-                        if 'castellano' in tags and 'venezuela' in tags and 'concursovenezuela' in tags:
-                            save = sendToMySQL(op["author"], link, op["permlink"], "concursovenezuela")
+                        if 'theunion' in tags:
+                            save = sendToMySQL(op["author"], link, op["permlink"], "theunion")
                         if save == True:
                             with open("PostsPosted.txt", "a") as f:  # guardamos el usuario en el archivo
                                 f.write(op["author"] + "/" + op["permlink"] + "\n")  # una linea por usuario contestado
