@@ -6,7 +6,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 import MySQLdb
 
-steem = Steem(nodes=["https://api.steemit.com"])
+steem = Steem(nodes=["https://httpsnode.steem.place"])
 chain = Blockchain(steemd_instance=steem, mode='head')
 
 MySQLHost = 'address'
@@ -18,6 +18,7 @@ MySQLPass = 'password'
 while True:
     try:
         for op in chain.stream(filter_by=["comment"]):
+            parent_author = op["parent_author"]
             postauthor = op["author"]
             postlink = op["permlink"]
             wordarray = op["body"].split(' ')
@@ -89,13 +90,21 @@ while True:
                                             fulllink = "https://steemit.com/tag/@" + postauthor + "/" + postlink
                                             print(languagetosend)
                                             if "es" in languagetosend:
-                                                print("setting message spanish")
-                                                messagetitle = "@" + mentionstring + ", has sido mencionado en un post de @" + postauthor
-                                                messagetosend = "Hola, <a href=https://steemit.com/@" + mentionstring + ">@" + mentionstring + "</a><br><br>Has sido mencionado en el siguiente post de <a href=https://steemit.com/@" + postauthor + ">@" + postauthor + "</a>:<br><br><a href=" + fulllink + ">" + fulllink + "</a><br><br>Atentamente,<br>Steem.Place"
+                                                print("sending email in spanish")
+                                                if parent_author == '':
+                                                    postOrComment = "post"
+                                                else:
+                                                    postOrComment = "comentario"
+                                                messagetitle = "@" + mentionstring + ", has sido mencionado en un " + postOrComment + " de @" + postauthor
+                                                messagetosend = "Hola, <a href=https://steemit.com/@" + mentionstring + ">@" + mentionstring + "</a><br><br>Has sido mencionado en el siguiente " + postOrComment + " de <a href=https://steemit.com/@" + postauthor + ">@" + postauthor + "</a>:<br><br><a href=" + fulllink + ">" + fulllink + "</a><br><br>Atentamente,<br>Steem.Place"
                                             else:
-                                                print("setting message english")
-                                                messagetitle = "@" + mentionstring + ", you have been mentioned in a post by @" + postauthor
-                                                messagetosend = "Hi, <a href=https://steemit.com/@" + mentionstring + ">@" + mentionstring + "</a><br><br>You have been mentioned in the following post by <a href=https://steemit.com/@" + postauthor + ">@" + postauthor + "</a>:<br><br><a href=" + fulllink + ">" + fulllink + "</a><br><br>Sincerelly,<br>Steem.Place"
+                                                print("sending email in english")
+                                                if parent_author == '':
+                                                    postOrComment = "post"
+                                                else:
+                                                    postOrComment = "comment"
+                                                messagetitle = "@" + mentionstring + ", you have been mentioned in a " + postOrComment + " by @" + postauthor
+                                                messagetosend = "Hi, <a href=https://steemit.com/@" + mentionstring + ">@" + mentionstring + "</a><br><br>You have been mentioned in the following " + postOrComment + " by <a href=https://steemit.com/@" + postauthor + ">@" + postauthor + "</a>:<br><br><a href=" + fulllink + ">" + fulllink + "</a><br><br>Sincerelly,<br>Steem.Place"
                                             msg['Subject'] = messagetitle
                                             message = messagetosend
                                             msg.attach(MIMEText(message, 'html'))

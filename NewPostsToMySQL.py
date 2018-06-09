@@ -24,7 +24,7 @@ def sendToMySQL(username, link, permlink, server):
         print("Error insertando post")
     return save
 
-steem = Steem(nodes=["https://api.steemit.com"])
+steem = Steem(nodes=["httpsnode.steem.place"])
 chain = Blockchain(steem, mode='head')
 
 already_posted = []

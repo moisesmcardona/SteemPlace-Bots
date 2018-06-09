@@ -3,7 +3,7 @@ from steem.blockchain import Blockchain
 import time
 import MySQLdb
 
-steem = Steem(nodes=["https://api.steemit.com"])
+steem = Steem(nodes=["https://httpsnode.steem.place"])
 chain = Blockchain(steemd_instance=steem, mode='head')
 
 MySQLHost = 'address'
