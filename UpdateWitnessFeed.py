@@ -16,7 +16,7 @@ def updateWitnessFeed(price):
 
 while True:
     url = "https://api.coinmarketcap.com/v2/ticker/1230/"
-    response = urllib.request.urlopen("https://api.coinmarketcap.com/v2/ticker/1312/")
+    response = urllib.request.urlopen(url)
     data = json.loads(response.read().decode())
     price = round(float(data["data"]["quotes"]["USD"]["price"]), 3)
     updateWitnessFeed(price)
