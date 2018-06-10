@@ -61,7 +61,7 @@ while True:
                             print(time.ctime() + ': Comentario de bienvenida ha sido escrito con éxito:' + user)
                         except Exception as ex:
                             print(ex)
-                        else:
-                            print(time.ctime() + " Not replying. Already replied.")
+                    else:
+                        print(time.ctime() + ": Ya se había comentado este post de bienvenida")
     except Exception as ex:
         print(ex)  # "Ha ocurrido un error leyendo el post del user. El programa seguira funcionando")
