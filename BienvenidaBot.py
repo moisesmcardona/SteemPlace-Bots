@@ -48,7 +48,7 @@ while True:
                             conn.commit()
                             conn.close()
                             print(time.ctime() + ': Post insertado en MySQL')
-                            steem.post("Mensaje de Bienvenida a " + user, texto.format(steemuser=user), BienvenidaAccount, permlink="bienvenida-" + str(user).replace(".", "") + "-" + permlink, reply_identifier="@" + user + "/" + permlink, self_vote=True)
+                            steem.post("Mensaje de Bienvenida a " + user, texto.format(steemuser=user), BienvenidaAccount, permlink="bienvenida-" + str(user).replace(".", "") + "-" + permlink, reply_identifier="@" + user + "/" + permlink, self_vote=False)
                             print(time.ctime() + ': Comentario escrito')
                             steem.vote("@" + user + "/" + permlink, 10.0, account=BienvenidaAccount)
                             print(time.ctime() + ': Post votado')
