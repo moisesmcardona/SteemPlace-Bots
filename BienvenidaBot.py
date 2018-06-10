@@ -14,7 +14,7 @@ MySQLPassword = 'password'
 steem = Steem(keys=pk[0], nodes=["https://httpsnode.steem.place"])
 chain = Blockchain(steemd_instance=steem, mode='head')
 BienvenidaAccount = "bienvenida"  # nombre de la cuenta
-texto = "## Te doy la bienvenida a Steemit, @{steemuser}\n\nPara ayudarte en la plataforma, he votado en este post y te estoy siguiendo 🙂\n\n[Te recomiendo la siguiente lista de iniciativas y comunidades de la comunidad hispana que puedes ver presionando aquí](https://steem.place/es/Iniciativas) las cuales pueden ser de tu interés y están a la mayor disposición de ayudar a gente nueva como tú.\n\n¡Te deseamos mucho éxito y que disfrutes estar por aquí!\n\n---\n\n<sub>Este bot fue creado por @moisesmcardona. [Si este comentario te ha parecido útil, vótalo como Witness presionando aquí](https://v2.steemconnect.com/sign/account-witness-vote?witness=moisesmcardona&approve=1)</sub>"
+texto = "## Te doy la bienvenida a Steemit, @{steemuser}\n\nPara ayudarte en la plataforma, he votado en este post y te estoy siguiendo 🙂\n\n[Te recomiendo la siguiente lista de iniciativas y comunidades de la comunidad hispana que puedes ver presionando aquí](https://steem.place/es/Iniciativas?usuario={steemuser}) las cuales pueden ser de tu interés y están a la mayor disposición de ayudar a gente nueva como tú.\n\n¡Te deseamos mucho éxito y que disfrutes estar por aquí!\n\n---\n\n<sub>Este bot fue creado por @moisesmcardona. [Si este comentario te ha parecido útil, vótalo como Witness presionando aquí](https://v2.steemconnect.com/sign/account-witness-vote?witness=moisesmcardona&approve=1)</sub>"
 
 already_commented = []  # variable tipo Array que tendrá los usuarios a los que ya hemos contestado
 try:
