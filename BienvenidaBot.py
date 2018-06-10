@@ -58,7 +58,7 @@ while True:
                                 f.write(user + "\n")  # una linea por usuario contestado
                                 f.close()
                             already_commented.append(user)
-                            print(time.ctime() + ': Comentario de bienvenida ha sido escrito con éxito:' + user)
+                            print(time.ctime() + ': Comentario de bienvenida ha sido escrito con éxito: ' + user)
                         except Exception as ex:
                             print(ex)
                     else:
