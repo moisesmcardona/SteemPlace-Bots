@@ -1,6 +1,7 @@
 ﻿import json
 import time
 import MySQLdb
+import os
 from steem import Steem
 from steem.blockchain import Blockchain
 
@@ -17,15 +18,14 @@ BienvenidaAccount = "bienvenida"  # nombre de la cuenta
 texto = "## Te doy la bienvenida a Steemit, @{steemuser}\n\nPara ayudarte en la plataforma, he votado en este post y te estoy siguiendo 🙂\n\n[Te recomiendo la siguiente lista de iniciativas y comunidades de la comunidad hispana que puedes ver presionando aquí](https://steem.place/es/Iniciativas?usuario={steemuser}) las cuales pueden ser de tu interés y están a la mayor disposición de ayudar a gente nueva como tú.\n\n¡Te deseamos mucho éxito y que disfrutes estar por aquí!\n\n---\n\n<sub>Este bot fue creado por @moisesmcardona. [Si este comentario te ha parecido útil, vótalo como Witness presionando aquí](https://v2.steemconnect.com/sign/account-witness-vote?witness=moisesmcardona&approve=1)</sub>"
 
 already_commented = []  # variable tipo Array que tendrá los usuarios a los que ya hemos contestado
-try:
+
+if os.path.exists("BienvenidaLogged.txt"):
     with open("BienvenidaLogged.txt", "r") as f:  # Aquí van a estar los usuarios que ya hemos contestado
         data = f.read().splitlines()
         f.close()
     for line in data:
         print("loaded user: " + line + " to list")
         already_commented.append(line)
-except:
-    pass
 
 while True:
     try:

@@ -2,6 +2,7 @@ from steem import Steem
 from steem.blockchain import Blockchain
 import MySQLdb
 import json
+import os
 
 def sendToMySQL(username, link, permlink, server):
     try:
@@ -28,7 +29,9 @@ steem = Steem(nodes=["httpsnode.steem.place"])
 chain = Blockchain(steem, mode='head')
 
 already_posted = []
-try:
+
+
+if os.path.exists("PostsPosted.txt"):
     with open("PostsPosted.txt", "r") as f:
         data = f.read().splitlines()
         f.close()
@@ -36,12 +39,10 @@ try:
     for line in data:
         print("loaded link: " + line + " to list")
         already_posted.append(line)
-except:
-    pass
 
 while True:
     try:
-        for op in chain.stream(filter_by=["comment"]):
+        for op in chain.stream_from(filter_by=["comment"]):
             if op["parent_author"] == '':
                 tags = json.loads(op['json_metadata'])
                 tags = tags['tags']
