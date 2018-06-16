@@ -42,7 +42,7 @@ if os.path.exists("PostsPosted.txt"):
 
 while True:
     try:
-        for op in chain.stream_from(filter_by=["comment"]):
+        for op in chain.stream(filter_by=["comment"]):
             if op["parent_author"] == '':
                 tags = json.loads(op['json_metadata'])
                 tags = tags['tags']
